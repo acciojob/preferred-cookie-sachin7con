@@ -19,6 +19,19 @@
 window.onload = function() {
     const submit = document.getElementById("submit");
 
+    // Function to get a cookie by name
+    function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
+    // Apply the font size and color from the cookies
+    const fontSize = getCookie('fontsize');
+    const fontColor = getCookie('fontcolor');
+    if (fontSize) document.body.style.fontSize = fontSize + 'px';
+    if (fontColor) document.body.style.color = fontColor;
+
     if(submit) {
         submit.addEventListener('click', (event) => {
             event.preventDefault(); // to prevent form submission
